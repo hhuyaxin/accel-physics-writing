@@ -1,0 +1,43 @@
+# ============================================================
+#  版权红线 —— 私有语料绝不提交(见 CLAUDE.md §2)
+#  这一段在任何书籍 PDF 进入仓库之前就必须存在。
+# ============================================================
+
+# 整个私有语料目录:教科书 PDF、本地检索索引、私有页码索引
+private_corpus/
+
+# 任何位置的书籍/正文文件,双保险
+*.pdf
+*.epub
+*.mobi
+*.djvu
+
+# 私有命名约定(private_reference_index.yaml、private_*.md 等)
+private_*
+
+# 本地检索索引产物(向量库、全文索引、缓存)
+*.faiss
+*.sqlite
+*.db
+embeddings/
+.index_cache/
+
+# 本地 embedding 模型权重缓存(setup.sh 下载,见 CLAUDE.md §2 / §7.5)
+.cache/
+
+# ============================================================
+#  常规忽略
+# ============================================================
+# Claude Code 本机本地设置(含本地权限/绝对路径,不入公开仓库)
+.claude/settings.local.json
+
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+*.log
+.ipynb_checkpoints/
+node_modules/

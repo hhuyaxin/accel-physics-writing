@@ -1,0 +1,248 @@
+# public_reference_index.yaml —— 开放获取资源索引(零书可用,降级链第 2 级)
+#
+# 含义(CLAUDE.md §2.5):公开层,任何用户不放私有书就能用。供 [开放获取·可访问] 引用。
+# 合规:公开可访问资源的站点级稳定地址,完全可提交。
+#
+# ⚠️ 红线(CLAUDE.md §4):绝不编造 DOI / arXiv 号。
+#   - 下面只放**确信不会错的站点级地址**(venue 级)。
+#   - 具体某篇论文的 DOI/arXiv 号必须**联网逐条核实后**才能加入 papers: 段,
+#     未核实前留空,引用时只能让用户"去该站点检索关键词",不得给假号。
+
+# ---------- 权威开放获取站点(venue 级,稳定)----------
+venues:
+  - id: cas
+    name: "CERN Accelerator School (CAS)"
+    type: lecture_proceedings
+    url: "https://cas.web.cern.ch/"
+    proceedings_via: "CERN Yellow Reports @ https://cds.cern.ch/"
+    open_access: true
+    topics: [beam_dynamics, space_charge, rf, collective_effects, diagnostics, intro_courses]
+    note: "经典入门到进阶讲义;空间电荷、不稳定性等都有专题 school。"
+
+  - id: uspas
+    name: "US Particle Accelerator School (USPAS)"
+    type: lecture_notes
+    url: "https://uspas.fnal.gov/"
+    open_access: true
+    topics: [beam_dynamics, linac, rings, space_charge, simulation, fundamentals]
+    note: "课程材料/讲义公开,适合系统学习与教学引用。"
+
+  - id: jacow
+    name: "JACoW (Joint Accelerator Conferences Website)"
+    type: conference_proceedings
+    url: "https://www.jacow.org/"
+    open_access: true
+    topics: [all_accelerator_topics, machine_results, design_reports]
+    note: "IPAC/LINAC/HB/ICAP 等会议论文;查具体结果的首选。具体论文需站内检索核实。"
+
+  - id: arxiv_accph
+    name: "arXiv physics.acc-ph"
+    type: preprint
+    url: "https://arxiv.org/list/physics.acc-ph/recent"
+    open_access: true
+    topics: [all_accelerator_topics, theory, methods]
+    note: "预印本;引用前应核实是否有同行评审版本与真实 arXiv 号。"
+
+  - id: cds
+    name: "CERN Document Server (CDS)"
+    type: repository
+    url: "https://cds.cern.ch/"
+    open_access: true
+    topics: [reports, theses, yellow_reports, cas_proceedings]
+    note: "CERN 技术报告/黄皮书/学位论文检索入口。"
+
+  - id: prab
+    name: "Phys. Rev. Accelerators and Beams (PRAB)"
+    type: journal
+    url: "https://journals.aps.org/prab/"
+    open_access: true
+    topics: [peer_reviewed, beam_physics, collective_effects, space_charge]
+    note: "完全开放获取的同行评审期刊;具体文章 DOI 需核实后填 papers。"
+
+  - id: juas2024
+    name: "JUAS 2024 Proceedings (CERN Yellow Reports, CC-BY 4.0)"
+    type: lecture_proceedings_collection
+    url: "https://e-publishing.cern.ch/index.php/CYRSP/issue/view/168"
+    open_access: true
+    topics: [beam_dynamics, transverse, longitudinal, rf, linac, synchrotron_radiation,
+             collective_effects, superconducting, diagnostics, colliders, fel, erl,
+             plasma_wakefield, electron_accelerator, full_curriculum]
+    note: "一整套成体系的加速器物理课程(60+ 章,粒子+电子全谱)。下面 papers 收录了部分已核实章节;
+           其余章节去此目录页按章号查,章节 DOI 形如 10.23730/CYRSP-2024-003.<页码>(页码不可推导,引用前须逐篇核实)。"
+
+# ---------- 已联网核实的具体文献(每条 DOI 均经权威源核实)----------
+# 追加新条目前:必须用 CERN 官方页 / Crossref API / 出版社页核实标题·作者·年份·DOI,严禁编造。
+papers:
+  - title: "Space Charge in Circular Machines"
+    authors: "G. Franchetti"
+    venue: cas
+    year: 2017
+    doi: "10.23730/CYRSP-2017-003.353"
+    url: "https://doi.org/10.23730/CYRSP-2017-003.353"
+    license: "CC-BY 4.0"
+    topics: [space_charge, circular_machines, tune_shift, resonances, emittance_growth]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Space Charge Mitigation"
+    authors: "M. Ferrario"
+    venue: cas
+    year: 2018
+    doi: "10.23730/CYRSP-2018-005.89"
+    url: "https://doi.org/10.23730/CYRSP-2018-005.89"
+    license: "CC-BY 4.0"
+    topics: [space_charge, mitigation, injection, high_brightness]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Incoherent effects of space charge and sum resonances on particle beams in a storage ring"
+    authors: "G. Franchetti"
+    venue: prab
+    year: 2019
+    doi: "10.1103/PhysRevAccelBeams.22.114201"
+    url: "https://doi.org/10.1103/PhysRevAccelBeams.22.114201"
+    citation: "Phys. Rev. Accel. Beams 22, 114201 (2019)"
+    license: "open access (PRAB)"
+    topics: [space_charge, incoherent_tune_shift, sum_resonance, storage_ring]
+    verified: "Crossref API"
+
+  - title: "Space charge effect in an accelerated beam"
+    authors: "G. Stupakov, Z. Huang"
+    venue: prab
+    year: 2008
+    doi: "10.1103/PhysRevSTAB.11.014401"
+    url: "https://doi.org/10.1103/PhysRevSTAB.11.014401"
+    citation: "Phys. Rev. ST Accel. Beams 11, 014401 (2008)"
+    license: "open access (PRST-AB)"
+    topics: [space_charge, longitudinal, acceleration]
+    verified: "Crossref API"
+
+  # ----- JUAS 2024 成体系讲义(章节,均 CC-BY 4.0,逐篇经 CERN 官方页核实)-----
+  - title: "Transverse beam dynamics (JUAS I.3)"
+    authors: "B. Holzer"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.73"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.73"
+    license: "CC-BY 4.0"
+    topics: [transverse_dynamics, optics, beta_function, dispersion, chromaticity, emittance, lattice]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Longitudinal beam dynamics (JUAS I.4)"
+    authors: "A. Lasheen"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.167"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.167"
+    license: "CC-BY 4.0"
+    topics: [longitudinal_dynamics, rf, synchrotron_oscillation, bunch, acceleration]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Injection and extraction (JUAS I.7)"
+    authors: "N. Carmignani, T. Perron"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.323"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.323"
+    license: "CC-BY 4.0"
+    topics: [injection, extraction, septum, kicker, beam_transfer]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Synchrotron radiation (JUAS I.10)"
+    authors: "R. Ischebeck"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.433"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.433"
+    license: "CC-BY 4.0"
+    topics: [synchrotron_radiation, light_source, electron_accelerator, radiation_damping]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Linear particle accelerators (JUAS I.11)"
+    authors: "D. Alesini"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.479"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.479"
+    license: "CC-BY 4.0"
+    topics: [linac, rfq, acceleration, electron_accelerator, proton]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Collective effects (JUAS I.12)"
+    authors: "M. Migliorati"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.539"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.539"
+    license: "CC-BY 4.0"
+    topics: [collective_effects, wakefield, impedance, instability, space_charge]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Superconducting RF cavities (JUAS II.5)"
+    authors: "F. Caspers, S. Calatroni"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.1085"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.1085"
+    license: "CC-BY 4.0"
+    topics: [superconducting_rf, srf, cavity, rf, gradient]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Beam instrumentation (JUAS II.9)"
+    authors: "P. Forck"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.1339"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.1339"
+    license: "CC-BY 4.0"
+    topics: [diagnostics, instrumentation, bpm, profile, emittance_measurement, beam_loss_monitor]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Electron-positron circular colliders (JUAS III.4.5)"
+    authors: "F. Zimmermann"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.1981"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.1981"
+    license: "CC-BY 4.0"
+    topics: [collider, electron_positron, circular_collider, luminosity, electron_accelerator]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "X-ray free-electron-lasers (JUAS III.7)"
+    authors: "E. Prat"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.2057"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.2057"
+    license: "CC-BY 4.0"
+    topics: [free_electron_laser, fel, undulator, xray, electron_accelerator, microbunching]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Energy recovery linacs (JUAS III.8)"
+    authors: "M. Arnold"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.2073"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.2073"
+    license: "CC-BY 4.0"
+    topics: [energy_recovery_linac, erl, linac, electron_accelerator]
+    verified: "CERN e-publishing 官方页"
+
+  - title: "Plasma wakefield acceleration and the AWAKE experiment at CERN (JUAS III.15)"
+    authors: "E. Gschwendtner"
+    venue: juas2024
+    year: 2024
+    doi: "10.23730/CYRSP-2024-003.2167"
+    url: "https://doi.org/10.23730/CYRSP-2024-003.2167"
+    license: "CC-BY 4.0"
+    topics: [plasma_wakefield, advanced_acceleration, awake, electron_accelerator]
+    verified: "CERN e-publishing 官方页"
+
+  # ----- 其它经典 CAS 讲义 -----
+  - title: "Beam Dynamics of Collective Instabilities in High Energy Accelerators"
+    authors: "A. W. Chao"
+    venue: cas
+    year: 2017
+    doi: "10.23730/CYRSP-2017-003.43"
+    url: "https://doi.org/10.23730/CYRSP-2017-003.43"
+    license: "CC-BY 4.0"
+    topics: [collective_effects, instability, impedance, wakefield, landau_damping]
+    verified: "CERN e-publishing 官方页"
