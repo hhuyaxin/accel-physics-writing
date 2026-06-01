@@ -29,6 +29,8 @@
 ```
 项目根/
 ├── CLAUDE.md                      # 本文件,提交
+├── README.md                      # 提交(项目门面:特性/快速开始/原理/多 agent 支持)
+├── AGENTS.md                      # 提交(OpenAI Codex 等通用 agent 入口,指向同一套规则与脚本)
 ├── .gitignore                     # 提交(必须先写好)
 ├── LICENSE                        # 提交(MIT,见 §2 许可证一节)
 ├── .claude/
