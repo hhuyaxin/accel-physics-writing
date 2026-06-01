@@ -45,6 +45,7 @@
 > 🔗 `[开放获取·可访问]` G. Franchetti, *Space Charge in Circular Machines*, CAS 2017, **DOI 10.23730/CYRSP-2017-003.353**(CC-BY)
 
 每条结论后面那个标签,就是它的"可信度标识"——见[工作原理](#工作原理)。
+更多真实输出(含离题问题如实降级)→ **[EXAMPLES.md](EXAMPLES.md)**。
 
 ---
 
@@ -60,22 +61,32 @@
 
 ---
 
-## 快速开始
+## 安装
+
+**推荐 —— 装一次,以后写任何论文都能用**(用户级 skill):
 
 ```bash
-# 1) 克隆
 git clone https://github.com/hhuyaxin/accel-physics-writing.git
-cd accel-physics-writing
+cp -r accel-physics-writing/.claude/skills/accel-physics-writing ~/.claude/skills/
+bash ~/.claude/skills/accel-physics-writing/setup.sh        # 建 .venv + 下本地模型,无需 API key
+```
 
-# 2) 一次性初始化:建 .venv、装依赖、下载本地模型(无需任何 API key)
-bash .claude/skills/accel-physics-writing/setup.sh
+之后 Claude Code 在**任何项目**里都能用这个 skill。它是**自包含**的:虚拟环境、本地模型、你的书库
+都放在 skill 文件夹内(`~/.claude/skills/accel-physics-writing/`)。想换位置就设 `APW_HOME`。
 
-# 3)(可选)放入你自己的书,解锁页码定位
-cp 你的书.pdf  private_corpus/books/
-.venv/bin/python .claude/skills/accel-physics-writing/scripts/index_corpus.py
+- **项目级**(只在某个项目用):改为把 skill 拷进 `<你的项目>/.claude/skills/`。
+- **OpenAI Codex / 其它 agent**:克隆本仓库(或把 [`AGENTS.md`](AGENTS.md) + skill 拷进你的项目),agent 读 `AGENTS.md` 走同一套流程。
+
+**解锁页码定位**(可选,放入你合法持有的书):
+
+```bash
+SKILL=~/.claude/skills/accel-physics-writing
+cp 你的书.pdf  "$SKILL/private_corpus/books/"
+"$SKILL/.venv/bin/python"  "$SKILL/scripts/index_corpus.py"
 ```
 
 完成后直接提问即可——见[支持的助手](#支持的助手)。
+👉 **更多真实示例**(跨语言、如实降级、开放获取):**[EXAMPLES.md](EXAMPLES.md)**
 
 ---
 

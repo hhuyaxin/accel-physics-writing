@@ -13,25 +13,47 @@ EMBEDDING_MODEL = os.environ.get(
 )
 
 
-def project_root() -> Path:
-    """从本文件向上找到项目根(含 private_corpus 或 CLAUDE.md 的目录)。"""
-    here = Path(__file__).resolve()
-    for anc in here.parents:
-        if (anc / "private_corpus").exists() or (anc / "CLAUDE.md").exists():
+def skill_dir() -> Path:
+    """本 skill 的根目录(scripts/ 的上一层),无论装在哪都成立。"""
+    return Path(__file__).resolve().parents[1]
+
+
+def data_root() -> Path:
+    """
+    运行期数据(.venv / .cache 模型 / private_corpus)的落地根。决定 skill 能否被随意安装:
+      1) 环境变量 APW_HOME 显式指定 → 用它;
+      2) 开发仓库:向上找到含 CLAUDE.md 的目录 → 用仓库根(你的现有布局不变,零迁移);
+      3) 别人安装(只拷 skill 目录,无 CLAUDE.md)→ 自包含在 skill 目录内。
+    """
+    env = os.environ.get("APW_HOME")
+    if env:
+        return Path(env).expanduser().resolve()
+    for anc in Path(__file__).resolve().parents:
+        if (anc / "CLAUDE.md").exists():
             return anc
-    return here.parents[4]  # 兜底:scripts/ 上溯 4 层
+    return skill_dir()
+
+
+# 向后兼容别名
+def project_root() -> Path:
+    return data_root()
+
+
+def references_dir() -> Path:
+    """公开资料(术语表/索引等)始终随 skill 走,锚定在 skill 目录。"""
+    return skill_dir() / "references"
 
 
 def model_dir() -> Path:
-    return project_root() / ".cache" / "st-models" / EMBEDDING_MODEL.split("/")[-1]
+    return data_root() / ".cache" / "st-models" / EMBEDDING_MODEL.split("/")[-1]
 
 
 def books_dir() -> Path:
-    return project_root() / "private_corpus" / "books"
+    return data_root() / "private_corpus" / "books"
 
 
 def index_dir() -> Path:
-    return project_root() / "private_corpus" / "index"
+    return data_root() / "private_corpus" / "index"
 
 
 def load_model():

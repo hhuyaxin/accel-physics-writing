@@ -20,8 +20,8 @@ import _config as C  # noqa: E402
 
 
 def _index_path() -> Path:
-    return C.project_root() / ".claude" / "skills" / "accel-physics-writing" / \
-        "references" / "public_reference_index.yaml"
+    # 公开索引随 skill 走,锚定 skill 目录(无论装在哪都成立)
+    return C.references_dir() / "public_reference_index.yaml"
 
 
 def _load() -> dict:

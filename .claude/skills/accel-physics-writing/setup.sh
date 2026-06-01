@@ -11,9 +11,24 @@
 # ============================================================
 set -euo pipefail
 
-# ---- 0. 定位项目根(本脚本在 <root>/.claude/skills/accel-physics-writing/) ----
+# ---- 0. 定位数据落地根(决定 skill 能否被随意安装)----
+#   SCRIPT_DIR = 本 skill 目录(setup.sh 就在 skill 根)。
+#   DATA_ROOT(.venv / .cache / private_corpus 落地处)解析优先级:
+#     1) 环境变量 APW_HOME;
+#     2) 开发仓库:向上找到含 CLAUDE.md 的目录 → 用仓库根(现有布局不变);
+#     3) 别人安装(无 CLAUDE.md)→ 自包含在 skill 目录内。
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+PROJECT_ROOT=""
+if [ -n "${APW_HOME:-}" ]; then
+  PROJECT_ROOT="$(cd "$APW_HOME" && pwd)"
+else
+  d="$SCRIPT_DIR"
+  while [ "$d" != "/" ]; do
+    [ -f "$d/CLAUDE.md" ] && { PROJECT_ROOT="$d"; break; }
+    d="$(dirname "$d")"
+  done
+  [ -z "$PROJECT_ROOT" ] && PROJECT_ROOT="$SCRIPT_DIR"   # 自包含
+fi
 VENV_DIR="$PROJECT_ROOT/.venv"
 CACHE_DIR="$PROJECT_ROOT/.cache"
 

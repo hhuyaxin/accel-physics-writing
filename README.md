@@ -48,6 +48,7 @@ of a textbook when it can, and an explicit *"this is my inference, please verify
 > 🔗 `[开放获取·可访问]` *(open access · reachable)* — G. Franchetti, *Space Charge in Circular Machines*, CAS 2017, **DOI 10.23730/CYRSP-2017-003.353** (CC-BY)
 
 The tag after each statement is its *reliability label* — see [How it works](#how-it-works).
+More real transcripts (incl. honest fallback on out-of-scope questions) → **[EXAMPLES.md](EXAMPLES.md)**.
 
 ---
 
@@ -63,22 +64,33 @@ The tag after each statement is its *reliability label* — see [How it works](#
 
 ---
 
-## Quick start
+## Installation
+
+**Recommended — install once, use in *every* paper you write** (user-level skill):
 
 ```bash
-# 1) Clone
 git clone https://github.com/hhuyaxin/accel-physics-writing.git
-cd accel-physics-writing
+cp -r accel-physics-writing/.claude/skills/accel-physics-writing ~/.claude/skills/
+bash ~/.claude/skills/accel-physics-writing/setup.sh        # .venv + local model, no API key
+```
 
-# 2) One-time setup: create .venv, install deps, download the local model (no API key)
-bash .claude/skills/accel-physics-writing/setup.sh
+Claude Code can now use the skill in **any** project. The skill is **self-contained**: its virtualenv,
+the local model, and your book library all live inside the skill folder
+(`~/.claude/skills/accel-physics-writing/`). Set `APW_HOME` to relocate that data if you prefer.
 
-# 3) (optional) Add your own books to unlock page-level citation
-cp your_book.pdf  private_corpus/books/
-.venv/bin/python .claude/skills/accel-physics-writing/scripts/index_corpus.py
+- **Project-level** (one project only): copy the skill into `<your-project>/.claude/skills/` instead.
+- **OpenAI Codex / other agents:** clone the repo (or copy [`AGENTS.md`](AGENTS.md) + the skill into your project); the agent reads `AGENTS.md` and follows the same workflow.
+
+**Unlock page-level citation** (optional — bring your own legally-owned books):
+
+```bash
+SKILL=~/.claude/skills/accel-physics-writing
+cp your_book.pdf  "$SKILL/private_corpus/books/"
+"$SKILL/.venv/bin/python"  "$SKILL/scripts/index_corpus.py"
 ```
 
 Then just ask your questions — see [Supported assistants](#supported-assistants).
+👉 **More worked transcripts** (cross-lingual, honest fallback, open-access): **[EXAMPLES.md](EXAMPLES.md)**
 
 ---
 
