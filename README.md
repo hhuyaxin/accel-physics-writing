@@ -179,7 +179,7 @@ private_corpus/              # your books & index — git-ignored, never committ
 ## Roadmap
 
 - [x] **Ability A — sourced physics Q&A** (private page-level + open-access DOI ladder)
-- [ ] **Ability B — mechanical derivation checks** (`check_algebra.py`: dimensional / algebraic verification with SymPy)
+- [x] **Ability B — mechanical derivation checks** (`check_algebra.py`: SymPy equality / dimension / limit, e.g. catches `(a+b)²≠a²+b²` and `E=mc` dimension mismatch)
 - [ ] **Ability C — whole-document / slide physics review** script
 - [ ] Expand the open-access library (Chinese-language resources, more subfields)
 

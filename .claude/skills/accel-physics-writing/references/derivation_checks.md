@@ -30,11 +30,19 @@
 - 报告:指出任何隐性破坏守恒律的步骤(常见于人为引入耗散却未说明机制)。
 
 ### 4. 符号代数验证(不靠心算)
-- 调用 `scripts/check_algebra.py`(sympy),把推导关键步骤真算一遍化简 / 求导 / 积分。
-- 对比模型化简结果与用户给的结果是否符号等价。
-- 报告:贴出 sympy 的判定(等价 / 不等价 + 差异项)。
-- > 脚本尚未实现时(Step 3 前):必须显式声明"代数未经 sympy 验证,以下为人工核对",
-  > 不得把心算结果当作已验证。
+- 调用 `scripts/check_algebra.py`(sympy)真算,**不要心算**。把用户推导翻译成下列调用:
+  ```bash
+  PY=<root>/.venv/bin/python ; CA=<root>/.claude/skills/accel-physics-writing/scripts/check_algebra.py
+  # 一步等价:
+  $PY $CA equality "(beta*gamma)**2" "gamma**2-1" --subs "gamma=1/sqrt(1-beta**2)"
+  # 量纲一致(基:M,L,T,I,Theta;无量纲写 1):
+  $PY $CA dimension "eps_n" "beta*gamma*eps" --dims "eps_n=L,eps=L,beta=1,gamma=1"
+  # 极限/特例(物理单侧极限加 --dir -):
+  $PY $CA limit "1/gamma**2" --var gamma --to oo --expect 0
+  ```
+  注意:`beta`/`gamma`/`E` 等会被当普通符号(脚本已处理),`sqrt/exp/log/pi/oo` 是真函数/常量。
+- 报告:贴出 sympy 的判定(等价 / 不等价 + **差异项**,如 `(a+b)²−(a²+b²)=2ab`)。
+- 不确定如何用脚本时,先 `$PY $CA selftest` 看四类检查的真实示例。
 
 ### 5. 数量级检查
 - 代入典型数值,看结果量级是否物理合理。参考典型范围:

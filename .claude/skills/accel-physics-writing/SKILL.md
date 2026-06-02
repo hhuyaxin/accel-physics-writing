@@ -68,7 +68,7 @@ bash .claude/skills/accel-physics-writing/setup.sh
 
 - `scripts/index_corpus.py` — 把 `private_corpus/books/` 的 PDF 用 pdfplumber 逐页抽取(保留真实页码)→ 切块 → 本地 sentence-transformers 向量 → faiss 建索引。(Step 2)
 - `scripts/retrieve.py` — 输入概念,查本地索引,返回 **片段 + 真实页码 + 书名**;只返回片段,**绝不返回整页正文**。(Step 2)
-- `scripts/check_algebra.py` — sympy 量纲 / 化简验证。(Step 3)
+- `scripts/check_algebra.py` — sympy 推导机械检查:`equality`(符号等价)/ `dimension`(量纲一致)/ `limit`(极限退化)/ `selftest`。涉及推导一律走它,不靠心算(见 references/derivation_checks.md §4)。
 
 > **依赖红线**:PDF 只用 pdfplumber/pypdf(禁 PyMuPDF/AGPL);embedding 只用本地 sentence-transformers
 > (禁任何云端 API key);向量检索 faiss-cpu;代数 sympy。许可证 + 隐私 + 零配置三重原因。

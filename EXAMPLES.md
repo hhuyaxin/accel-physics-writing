@@ -75,6 +75,25 @@ $ pubref.py "synchrotron radiation from electron storage ring"
 
 ---
 
+## 5. Mechanical derivation check 推导机械检查(能力 B)
+
+SymPy 真算,不靠模型直觉——既能确认对,也能**指出错在哪**。
+
+```console
+$ check_algebra.py equality "(a+b)**2" "a**2+b**2"
+✗ 不等价  (LHS−RHS 化简 = 2*a*b)          # 直接给出漏掉的交叉项
+
+$ check_algebra.py dimension "E" "m*c"  --dims "E=M*L**2/T**2,m=M,c=L/T"
+✗ 量纲不符  (左 [L**2*M/T**2]  右 [L*M/T])  # E=mc 少了一个 c,被抓出
+
+$ check_algebra.py limit "1/sqrt(1-beta**2)" --var beta --to 1 --expect oo --dir -
+✓ 退回期望情形  (极限(beta→1⁻)=oo)        # β→1 时 γ→∞,物理单侧极限
+```
+
+`check_algebra.py selftest` 还内置了 6 个真实加速器物理例子(归一化发射度量纲、相对论动能 β→0 退回牛顿等)。
+
+---
+
 ## Reproduce it yourself 自己复现
 
 ```bash
