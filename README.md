@@ -180,7 +180,7 @@ private_corpus/              # your books & index — git-ignored, never committ
 
 - [x] **Ability A — sourced physics Q&A** (private page-level + open-access DOI ladder)
 - [x] **Ability B — mechanical derivation checks** (`check_algebra.py`: SymPy equality / dimension / limit, e.g. catches `(a+b)²≠a²+b²` and `E=mc` dimension mismatch)
-- [ ] **Ability C — whole-document / slide physics review** script
+- [x] **Ability C — whole-document / slide physics review** (`review_doc.py`: unit/magnitude linter, e.g. flags an emittance of `5 m·rad` and `|Δν|>1`, + a §6 checklist scaffold)
 - [ ] Expand the open-access library (Chinese-language resources, more subfields)
 
 ---

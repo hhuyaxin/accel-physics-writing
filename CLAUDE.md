@@ -52,7 +52,8 @@
 │           │   ├── index_corpus.py         # 提交(建索引:PDF 逐页抽取保留页码 → 切块 → 向量 → faiss)
 │           │   ├── retrieve.py             # 提交(第1级检索:查私有书,返回片段+真实页码+书名)
 │           │   ├── pubref.py               # 提交(第2级检索:查开放获取索引,返回已核实 DOI/站点)
-│           │   └── check_algebra.py        # 提交(sympy 代数/量纲验证)
+│           │   ├── check_algebra.py        # 提交(能力B:sympy 代数/量纲/极限验证)
+│           │   └── review_doc.py           # 提交(能力C:文档单位/数量级 linter + §6 审查脚手架)
 │           └── vendor/                      # 提交(内联的第三方代码,各带其 LICENSE)
 │               └── README.md               # 说明每个内联组件来源与许可证
 ├── private_corpus/                # 整个目录 .gitignore,绝不提交
