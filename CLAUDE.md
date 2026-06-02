@@ -32,6 +32,9 @@
 ├── README.md / README.zh-CN.md    # 提交(双语门面:英文主页 + 中文版,顶部互链)
 ├── AGENTS.md                      # 提交(OpenAI Codex 等通用 agent 入口,指向同一套规则与脚本)
 ├── EXAMPLES.md                    # 提交(真实可复现的脚本输出示例)
+├── tests/                         # 提交(pytest 不变量套件:不伪造/能降级/能抓错;需模型的用例自动 skip)
+├── requirements-dev.txt           # 提交(开发依赖:pytest)
+├── pytest.ini                     # 提交
 ├── .gitignore                     # 提交(必须先写好)
 ├── LICENSE                        # 提交(MIT,见 §2 许可证一节)
 ├── .claude/

@@ -1,0 +1,3 @@
+# 开发/测试依赖(不进用户安装,保持 setup.sh 精简)
+# 用法:.venv/bin/pip install -r requirements-dev.txt && .venv/bin/python -m pytest -q
+pytest
